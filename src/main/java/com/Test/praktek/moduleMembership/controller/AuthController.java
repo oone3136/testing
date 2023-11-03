@@ -43,11 +43,11 @@ public class AuthController {
         @Autowired
         JwtUtils jwtUtils;
 
-        @PostMapping("/signin")
+        @PostMapping("/login")
         public ResponseEntity<JwtResponse> authenticateUser(@RequestBody LoginRequest request) {
                 log.debug("start signin ");
                 Authentication authentication = authenticationManager
-                                .authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(),
+                                .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(),
                                                 request.getPassword()));
                 SecurityContextHolder.getContext()
                         .setAuthentication(authentication);
@@ -64,17 +64,15 @@ public class AuthController {
 
         }
 
-        @PostMapping("/signup")
+        @PostMapping("/registration")
         public Users signup(@RequestBody SignupRequest request) {
                 log.debug("start signup {}", request);
                 Users pengguna = new Users();
-                pengguna.setId(request.getUsername());
-                pengguna.setEmail(request.getEmail());
+                pengguna.setId(request.getEmail());
+                pengguna.setFirst_name(request.getFirst_name());
+                pengguna.setLast_name(request.getLast_name());
                 pengguna.setPassword(passwordEncoder.encode(request.getPassword()));
-                pengguna.setNamaLengkap(request.getNama());
                 pengguna.setRoles("user");
-                pengguna.setDevisi(request.getDevisi());
-                pengguna.setNomorTelepon(request.getNomorTelepon());
                 Users created = service.createUsers(pengguna);
                 log.debug("end signup {}", created);
                 return created;

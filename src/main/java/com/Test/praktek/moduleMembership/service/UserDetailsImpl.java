@@ -37,8 +37,8 @@ public class UserDetailsImpl implements UserDetails {
 
     public static UserDetailsImpl build(Users pengguna) {
         return new UserDetailsImpl(pengguna.getId(),
-                pengguna.getEmail(),
-                pengguna.getNamaLengkap(),
+                pengguna.getFirst_name(),
+                pengguna.getLast_name(),
                 pengguna.getPassword(),
                 pengguna.getRoles());
     }

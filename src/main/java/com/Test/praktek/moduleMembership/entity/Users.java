@@ -21,13 +21,9 @@ public class Users {
      @Id
      private String id;
 
-     @Column(name = "nama_Lengkap")         private String namaLengkap;
+     @Column(name = "first_name")         private String first_name;
 
-     @Column(name = "nomor_telepon")         private String nomorTelepon;
-
-     @Column(name = "email")                 private String email;
-
-     @Column(name = "devisi")                private String devisi;
+     @Column(name = "last_name")         private String last_name;
 
      @Column(name ="password", nullable = false)
      private String password;
@@ -37,27 +33,21 @@ public class Users {
      @JsonIgnore
      private Boolean isAktif;
 
-     public Users(String username) {
-          this.id = username;
+     public Users(String email) {
+          this.id = email;
      }
      public Users(String id, String namaLengkap, String email, String devisi, String nomorTelepon, String password)
      {
           this.id = id;
-          this.namaLengkap = namaLengkap;
-          this.email = email;
-          this.devisi = devisi;
-          this.nomorTelepon = nomorTelepon;
+          this.first_name = namaLengkap;
+          this.last_name = email;
           this.password = password;
      }
 
-
-     public Users(String id, String namaLengkap, String email, String devisi, String nomorTelepon, String password, String roles) {
+     public Users(String id, String firstName, String lastName, String password) {
           this.id = id;
-          this.namaLengkap = namaLengkap;
-          this.email = email;
-          this.devisi = devisi;
-          this.nomorTelepon = nomorTelepon;
+          this.first_name = firstName;
+          this.last_name = lastName;
           this.password = password;
-          this.roles = roles;
      }
 }
